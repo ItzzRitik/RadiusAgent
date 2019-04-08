@@ -18,6 +18,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     ImageView icosplash;
@@ -28,11 +29,14 @@ public class MainActivity extends AppCompatActivity {
     Animator animator;
     TextView namesplash;
     RotateAnimation rotate;
+    Toolbar toolbar;
     boolean loading=false,splashEND=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar=findViewById(R.id.toolbar);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setLightTheme(true,true);
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         icosplash.animate().scaleX(20f).scaleY(20f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
             setLightTheme(false,true);
+            toolbar.setVisibility(View.VISIBLE);
         },600);
     }
     public void setLightTheme(boolean status,boolean nav){

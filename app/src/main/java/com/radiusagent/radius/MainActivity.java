@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
     Animator animator;
     TextView namesplash;
     RotateAnimation rotate;
-    Toolbar toolbar;
+    AppBarLayout appbar;
     boolean loading=false,splashEND=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar=findViewById(R.id.toolbar);
+        appbar=findViewById(R.id.appbar);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setLightTheme(true,true);
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         icosplash.animate().scaleX(20f).scaleY(20f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
             setLightTheme(false,true);
-            toolbar.setVisibility(View.VISIBLE);
+            appbar.setVisibility(View.VISIBLE);
         },600);
     }
     public void setLightTheme(boolean status,boolean nav){

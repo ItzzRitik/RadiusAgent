@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         appbar=findViewById(R.id.appbar);
+        client = new OkHttpClient();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setLightTheme(true,true);
@@ -84,28 +85,25 @@ public class MainActivity extends AppCompatActivity {
                 String mMessage = Objects.requireNonNull(response.body()).string();
                 if (response.isSuccessful()){
                     try {
-                        JSONArray postsArray = new JSONArray(mMessage);
+                        JSONArray postsArray = new JSONArray(new JSONObject(mMessage).getString("results"));
                         users = new ArrayList<>();
                         for (int i = 0; i < postsArray.length(); i++) {
                             JSONObject obj = postsArray.getJSONObject(i);
                             Users user=new Users();
                             user.setGender(obj.getString("gender"));
-                            JSONArray objarr = new JSONArray(obj.getString("name"));
-                            String name = toTitleCase(objarr.getJSONObject(0).toString())+". ";
-                            name += toTitleCase(objarr.getJSONObject(1).toString())+" ";
-                            name += toTitleCase(objarr.getJSONObject(2).toString())+"";
+                            JSONObject nameobj = new JSONObject(obj.getString("name"));
+                            String name = toTitleCase(nameobj.getString("title"))+". ";
+                            name += toTitleCase(nameobj.getString("first"))+" ";
+                            name += toTitleCase(nameobj.getString("last"))+"";
                             user.setName(name);
-                            Log.w("jsonDTA", obj.getString("gender")+"\n"+name);
+                            Log.w("jsonDTA success", obj.getString("gender")+"\n"+name);
                         }
-                        new Handler(Looper.getMainLooper()).post(new Runnable() {
-                            @Override
-                            public void run() {
+                        new Handler(Looper.getMainLooper()).post(() -> {
 
-                            }
                         });
                     }
                     catch (JSONException e) {
-                        Log.w("error", e.toString());
+                        Log.w("jsonDTA error", e.toString());
                     }
                 }
             }
@@ -138,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(25f).scaleY(25f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
-            setLightTheme(false,true);
             appbar.setVisibility(View.VISIBLE);
         },600);
     }

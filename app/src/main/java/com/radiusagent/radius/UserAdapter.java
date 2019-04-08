@@ -37,7 +37,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
-            name.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/exo2.ttf"));
+            name.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/exo2_bold.otf"));
             email = view.findViewById(R.id.email);
             email.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/exo2.ttf"));
             age = view.findViewById(R.id.age);

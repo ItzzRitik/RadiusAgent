@@ -119,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                         new Handler(Looper.getMainLooper()).post(() -> {
                             loading=false;
+                            userView.setAdapter(null);
+                            userView.setAdapter(new UserAdapter(MainActivity.this,users));
                             if(endSplash)endSplash();
                         });
                     }
@@ -128,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        splash.setBackgroundColor(0);
         icosplash=findViewById(R.id.icosplash);
         namesplash=findViewById(R.id.namesplash);
         namesplash.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/vdub.ttf"));
@@ -140,10 +141,7 @@ public class MainActivity extends AppCompatActivity {
             endSplash=true;
             rotate.setInterpolator(new LinearInterpolator());rotate.setDuration(1000);
             rotate.setRepeatCount(Animation.INFINITE);icosplash.startAnimation(rotate);
-            if(loading){
-
-            }
-            else{
+            if(!loading){
                 endSplash();
             }
         },2000);
@@ -157,10 +155,7 @@ public class MainActivity extends AppCompatActivity {
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(30f).scaleY(30f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
-            appbar.setVisibility(View.VISIBLE);
             splash.setVisibility(View.GONE);
-            userView.setAdapter(null);
-            userView.setAdapter(new UserAdapter(MainActivity.this,users));
         },800);
     }
     public String toTitleCase(String str){

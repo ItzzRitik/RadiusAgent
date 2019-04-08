@@ -22,5 +22,5 @@ public class Users {
     public String getGender() {return gender;}
     public void setGender(String gender) {this.gender = gender;}
     public String getDp() {return dp;}
-    public void setDp(String thumbnail) {this.dp = dp;}
+    public void setDp(String dp) {this.dp = dp;}
 }

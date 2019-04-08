@@ -63,6 +63,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.name.setText(user.getName());
         holder.email.setText(user.getEmail());
         holder.age.setText(user.getAge());
+
         Glide.with(activity).load(user.getDp())
                 .apply(new RequestOptions()
                         .centerCrop()

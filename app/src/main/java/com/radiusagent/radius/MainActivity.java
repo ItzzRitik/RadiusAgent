@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                             user.setAge(new JSONObject(obj.getString("dob")).getString("age"));
                             user.setDp(new JSONObject(obj.getString("picture")).getString("large"));
                             users.add(user);
-                            Log.w("jsonDTA success", user.getName()+" - "+user.getGender()+" - "+user.getEmail()+" - "+user.getAge());
                         }
                         new Handler(Looper.getMainLooper()).post(() -> {
                             loading=false;

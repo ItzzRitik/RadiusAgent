@@ -1,21 +1,17 @@
 package com.radiusagent.radius;
-import android.content.Intent;
         import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
+        import android.support.design.card.MaterialCardView;
         import android.support.v7.widget.RecyclerView;
-        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
         import android.widget.ImageView;
-        import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-        import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -34,6 +30,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         RelativeLayout item,genderback;
         ImageView dp,gender;
         ProgressBar glidepro;
+        MaterialCardView dp_pane;
         MyViewHolder(View view) {
             super(view);
             name = view.findViewById(R.id.name);
@@ -44,6 +41,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             age.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/exo2.ttf"));
             dp = view.findViewById(R.id.dp);
 
+            dp_pane = view.findViewById(R.id.dp_pane);
             genderback = view.findViewById(R.id.genderback);
             gender = view.findViewById(R.id.gender);
             item = view.findViewById(R.id.item);
@@ -69,10 +67,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         if(user.getGender().equals("m")){
             holder.genderback.setBackground(activity.getDrawable(R.drawable.male_back));
             holder.gender.setImageResource(R.drawable.male);
+            holder.dp_pane.setStrokeColor(activity.getResources().getColor(R.color.male));
         }
         else{
             holder.genderback.setBackground(activity.getDrawable(R.drawable.female_back));
             holder.gender.setImageResource(R.drawable.female);
+            holder.dp_pane.setStrokeColor(activity.getResources().getColor(R.color.female));
         }
         Glide.with(activity).load(user.getDp())
                 .apply(new RequestOptions()

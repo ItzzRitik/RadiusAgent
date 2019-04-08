@@ -23,6 +23,7 @@
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:background="@color/colorAccent"
                 android:id="@+id/appbar">
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
@@ -37,6 +38,7 @@
                             android:id="@+id/title"
                             android:textSize="20sp"
                             android:letterSpacing="0.6"
+                            android:textColor="@color/colorPrimary"
                             android:text="@string/app_name" />
                     </RelativeLayout>
                 </android.support.v7.widget.Toolbar>

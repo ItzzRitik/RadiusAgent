@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         diagonal=Math.sqrt((screenSize.x*screenSize.x) + (screenSize.y*screenSize.y));
 
         appbar=findViewById(R.id.appbar);
-        appbar.setPadding(0,getHeightStatusNav(0)+dptopx(5),0,0);
+        appbar.setPadding(0,getHeightStatusNav(0)+dptopx(8),0,0);
 
         splash=findViewById(R.id.splash);
         client = new OkHttpClient();

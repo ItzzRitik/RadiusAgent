@@ -22,12 +22,13 @@
                 android:id="@+id/userView"/>
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="65dp"
                 android:background="@color/colorAccent"
                 android:id="@+id/appbar">
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|enterAlways">
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">

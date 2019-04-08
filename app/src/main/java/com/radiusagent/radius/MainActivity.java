@@ -19,6 +19,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
         diagonal=Math.sqrt((screenSize.x*screenSize.x) + (screenSize.y*screenSize.y));
 
         appbar=findViewById(R.id.appbar);
-        appbar.setPadding(0,getHeightStatusNav(0)+dptopx(8),0,0);
 
         splash=findViewById(R.id.splash);
         client = new OkHttpClient();
@@ -154,12 +154,12 @@ public class MainActivity extends AppCompatActivity {
         animator.setInterpolator(new AccelerateInterpolator());animator.setDuration(1000);
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(30f).scaleY(30f).setDuration(1000).start();
+        new Handler().postDelayed(() -> { setLightTheme(false,true); },200);
         new Handler().postDelayed(() -> {
-            setLightTheme(false,true);
-        },200);
-        new Handler().postDelayed(() -> {
-            splash.setVisibility(View.GONE);
-        },800);
+            MainActivity.this.getWindow().setStatusBarColor(MainActivity.this.getResources().getColor(R.color.colorAccent));
+            MainActivity.this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        },500);
+        new Handler().postDelayed(() -> { splash.setVisibility(View.GONE); },800);
     }
     public String toTitleCase(String str){
         str=str.toLowerCase();
@@ -195,14 +195,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public int dptopx(float dp) { return Math.round(dp * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT)); }
-    public int getHeightStatusNav(int viewid) {
-        int result = 0;
-        String view=(viewid==0)?"status_bar_height":"navigation_bar_height";
-        int resourceId = getResources().getIdentifier(view, "dimen", "android");
-        if (resourceId > 0) { result = getResources().getDimensionPixelSize(resourceId); }
-        if(viewid==1){result = result* 5/8;}
-        return result;
-    }
     public void setLightTheme(boolean status,boolean nav){
         int flags = getWindow().getDecorView().getSystemUiVisibility();
         if(status && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

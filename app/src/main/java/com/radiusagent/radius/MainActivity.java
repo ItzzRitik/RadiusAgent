@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                                     toTitleCase(nobj.getString("first"))+" "+
                                     toTitleCase(nobj.getString("last")));
                             user.setEmail(obj.getString("email"));
-                            user.setGender(obj.getString("gender").substring(0,1));
+                            user.setGender(obj.getString("gender"));
                             user.setAge(new JSONObject(obj.getString("dob")).getString("age"));
                             user.setDp(new JSONObject(obj.getString("picture")).getString("large"));
                             users.add(user);
@@ -154,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         animator.setInterpolator(new AccelerateInterpolator());animator.setDuration(1000);
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(30f).scaleY(30f).setDuration(1000).start();
+        new Handler().postDelayed(() -> {
+            setLightTheme(false,true);
+        },200);
         new Handler().postDelayed(() -> {
             splash.setVisibility(View.GONE);
         },800);

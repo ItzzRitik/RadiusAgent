@@ -17,7 +17,7 @@
             android:layout_centerVertical="true"
             card_view:cardCornerRadius="65dp"
             card_view:strokeColor="@color/male"
-            card_view:strokeWidth="2dp"
+            card_view:strokeWidth="1dp"
             android:id="@+id/dp_pane">
             <RelativeLayout
                 android:layout_width="130dp"

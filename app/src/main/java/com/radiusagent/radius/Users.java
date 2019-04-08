@@ -5,6 +5,7 @@ public class Users {
     private String age;
     private String gender;
     private String dp;
+    Users(){}
     Users(String name,String email,String age,String gender,String dp) {
         this.name = name;
         this.email = email;

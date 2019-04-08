@@ -30,6 +30,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import okhttp3.Call;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     RotateAnimation rotate;
     AppBarLayout appbar;
     OkHttpClient client;
+    List<Users> users;
     boolean loading=false,splashEND=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,19 +85,22 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     try {
                         JSONArray postsArray = new JSONArray(mMessage);
-                        schemes = new ArrayList<>();
+                        users = new ArrayList<>();
                         for (int i = 0; i < postsArray.length(); i++) {
-                            JSONObject pO = postsArray.getJSONObject(i);
-                            Log.v("error",pO.getString("img"));
-                            schemes.add(new Schemes(pO.getString("name"),pO.getString("endDate")
-                                    ,pO.getString("views"),pO.getString("description"),pO.getString("img")));
+                            JSONObject obj = postsArray.getJSONObject(i);
+                            Users user=new Users();
+                            user.setGender(obj.getString("gender"));
+                            JSONArray objarr = new JSONArray(obj.getString("name"));
+                            String name = toTitleCase(objarr.getJSONObject(0).toString())+". ";
+                            name += toTitleCase(objarr.getJSONObject(1).toString())+" ";
+                            name += toTitleCase(objarr.getJSONObject(2).toString())+"";
+                            user.setName(name);
+                            Log.w("jsonDTA", obj.getString("gender")+"\n"+name);
                         }
                         new Handler(Looper.getMainLooper()).post(new Runnable() {
                             @Override
                             public void run() {
-                                if(Email==null){Email="aditya.aastha@gmail.com";}
-                                if(Aadhaar==null){Aadhaar="123456789123";}
-                                display.setAdapter(new SchemeAdapter(HomeActivity.this,schemes,Email,Aadhaar));
+
                             }
                         });
                     }
@@ -136,6 +141,10 @@ public class MainActivity extends AppCompatActivity {
             setLightTheme(false,true);
             appbar.setVisibility(View.VISIBLE);
         },600);
+    }
+    public String toTitleCase(String str){
+        str=str.toLowerCase();
+        return (str.substring(0,1).toUpperCase()).concat(str.substring(1,str.length()));
     }
     public void setLightTheme(boolean status,boolean nav){
         int flags = getWindow().getDecorView().getSystemUiVisibility();

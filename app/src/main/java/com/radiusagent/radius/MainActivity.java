@@ -5,6 +5,7 @@ import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     ImageView icosplash;
     RelativeLayout splash;
+    CoordinatorLayout mainpane;
     Point screenSize;
     double diagonal;
     Animator animator;
@@ -35,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setLightTheme(true,true);
 
+        mainpane=findViewById(R.id.mainpane);
         splash=findViewById(R.id.splash);
         screenSize = new Point();
         getWindowManager().getDefaultDisplay().getSize(screenSize);
         diagonal=Math.sqrt((screenSize.x*screenSize.x) + (screenSize.y*screenSize.y));
+        splash();
     }
     public void splash(){
         splash.setBackgroundColor(0);
@@ -64,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         splashEND=true;
         int cx=screenSize.x/2;
         int cy=icosplash.getBottom()-(icosplash.getHeight()/2);
-        animator = ViewAnimationUtils.createCircularReveal(web,cx,cy,0,(float)diagonal);
+        animator = ViewAnimationUtils.createCircularReveal(mainpane,cx,cy,0,(float)diagonal);
         animator.setInterpolator(new AccelerateInterpolator());animator.setDuration(1000);
-        web.setVisibility(View.VISIBLE);splash.setElevation(1);web.setElevation(2);animator.start();
+        mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(20f).scaleY(20f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
             setLightTheme(false,true);

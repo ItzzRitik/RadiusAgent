@@ -13,6 +13,7 @@ import android.support.v7.widget.CardView;
         import android.widget.ImageView;
         import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
         import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private MainActivity activity;
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,email,age;
-        LinearLayout item;
+        RelativeLayout item;
         ImageView dp;
         ProgressBar glidepro;
         MyViewHolder(View view) {

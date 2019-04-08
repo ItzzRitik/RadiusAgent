@@ -16,6 +16,7 @@
             android:layout_height="140dp"
             android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
+            android:id="@+id/dp_pane"
             android:background="@drawable/dp_back">
             <ImageView
                 android:layout_width="match_parent"
@@ -33,7 +34,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:textSize="20sp"
-            android:layout_toEndOf="@+id/dp"
+            android:layout_toEndOf="@+id/dp_pane"
             android:id="@+id/name"/>
         <TextView
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="20dp"
             android:textSize="16sp"
-            android:layout_toEndOf="@+id/dp"
+            android:layout_toEndOf="@+id/dp_pane"
             android:layout_below="@+id/name"
             android:id="@+id/email"/>
         <TextView
@@ -50,7 +51,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginStart="20dp"
             android:textSize="20sp"
-            android:layout_toEndOf="@+id/dp"
+            android:layout_toEndOf="@+id/dp_pane"
             android:layout_alignParentBottom="true"
             android:id="@+id/age"/>
     </RelativeLayout>

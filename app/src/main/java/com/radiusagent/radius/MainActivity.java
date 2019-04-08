@@ -90,13 +90,15 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < postsArray.length(); i++) {
                             JSONObject obj = postsArray.getJSONObject(i);
                             Users user=new Users();
-                            user.setGender(obj.getString("gender"));
-                            JSONObject nameobj = new JSONObject(obj.getString("name"));
-                            String name = toTitleCase(nameobj.getString("title"))+". ";
-                            name += toTitleCase(nameobj.getString("first"))+" ";
-                            name += toTitleCase(nameobj.getString("last"))+"";
-                            user.setName(name);
-                            Log.w("jsonDTA success", obj.getString("gender")+"\n"+name);
+                            JSONObject nobj = new JSONObject(obj.getString("name"));
+                            user.setName(toTitleCase(nobj.getString("title"))+". "+
+                                    toTitleCase(nobj.getString("first"))+" "+
+                                    toTitleCase(nobj.getString("last")));
+                            user.setEmail(obj.getString("email"));
+                            user.setGender(obj.getString("gender").substring(0,1));
+                            user.setAge(new JSONObject(obj.getString("dob")).getString("age"));
+                            user.setDp(new JSONObject(obj.getString("picture")).getString("large"));
+                            Log.w("jsonDTA success", user.getName()+" - "+user.getGender()+" - "+user.getEmail()+" - "+user.getAge());
                         }
                         new Handler(Looper.getMainLooper()).post(() -> {
 

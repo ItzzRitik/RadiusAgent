@@ -31,8 +31,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
     private MainActivity activity;
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,email,age;
-        RelativeLayout item;
-        ImageView dp;
+        RelativeLayout item,genderback;
+        ImageView dp,gender;
         ProgressBar glidepro;
         MyViewHolder(View view) {
             super(view);
@@ -43,6 +43,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
             age = view.findViewById(R.id.age);
             age.setTypeface(Typeface.createFromAsset(activity.getAssets(), "fonts/exo2.ttf"));
             dp = view.findViewById(R.id.dp);
+
+            genderback = view.findViewById(R.id.genderback);
+            gender = view.findViewById(R.id.gender);
             item = view.findViewById(R.id.item);
             glidepro = view.findViewById(R.id.glidepro);
         }
@@ -63,7 +66,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         holder.name.setText(user.getName());
         holder.email.setText(user.getEmail());
         holder.age.setText(user.getAge());
-
+        if(user.getGender().equals("m")){
+            holder.genderback.setBackground(activity.getDrawable(R.drawable.male_back));
+            holder.gender.setImageResource(R.drawable.male);
+        }
+        else{
+            holder.genderback.setBackground(activity.getDrawable(R.drawable.female_back));
+            holder.gender.setImageResource(R.drawable.female);
+        }
         Glide.with(activity).load(user.getDp())
                 .apply(new RequestOptions()
                         .centerCrop()

@@ -51,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
     AppBarLayout appbar;
     OkHttpClient client;
     List<Users> users;
-    boolean loading=false,splashEND=false;
+    boolean loading=true,endSplash=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         appbar=findViewById(R.id.appbar);
+        splash=findViewById(R.id.splash);
         client = new OkHttpClient();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
@@ -101,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.w("jsonDTA success", user.getName()+" - "+user.getGender()+" - "+user.getEmail()+" - "+user.getAge());
                         }
                         new Handler(Looper.getMainLooper()).post(() -> {
-
+                            loading=false;
+                            if(endSplash)endSplash();
                         });
                     }
                     catch (JSONException e) {
@@ -116,30 +118,32 @@ public class MainActivity extends AppCompatActivity {
         namesplash.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/vdub.ttf"));
         namesplash.setLetterSpacing(0.8f);
 
-        rotate = new RotateAnimation(0, 360*5, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        rotate.setInterpolator(new AccelerateInterpolator());rotate.setDuration(3000);
+        rotate = new RotateAnimation(0, 360*3, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        rotate.setInterpolator(new AccelerateInterpolator());rotate.setDuration(2000);
         new Handler().postDelayed(() -> {
+            endSplash=true;
+            rotate.setInterpolator(new LinearInterpolator());rotate.setDuration(1000);
+            rotate.setRepeatCount(Animation.INFINITE);icosplash.startAnimation(rotate);
             if(loading){
-                rotate.setInterpolator(new LinearInterpolator());rotate.setDuration(1000);
-                rotate.setRepeatCount(Animation.INFINITE);icosplash.startAnimation(rotate);
+
             }
             else{
-                if(!splashEND)endSplash();
+                endSplash();
             }
-        },3000);
+        },2000);
         icosplash.startAnimation(rotate);
     }
     public void endSplash(){
-        splashEND=true;
         int cx=screenSize.x/2;
         int cy=icosplash.getBottom()-(icosplash.getHeight()/2);
         animator = ViewAnimationUtils.createCircularReveal(mainpane,cx,cy,0,(float)diagonal);
         animator.setInterpolator(new AccelerateInterpolator());animator.setDuration(1000);
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
-        icosplash.animate().scaleX(25f).scaleY(25f).setDuration(1000).start();
+        icosplash.animate().scaleX(30f).scaleY(30f).setDuration(1000).start();
         new Handler().postDelayed(() -> {
             appbar.setVisibility(View.VISIBLE);
-        },600);
+            splash.setVisibility(View.GONE);
+        },800);
     }
     public String toTitleCase(String str){
         str=str.toLowerCase();

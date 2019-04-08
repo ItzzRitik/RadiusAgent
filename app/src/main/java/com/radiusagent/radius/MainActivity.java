@@ -11,6 +11,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     Point screenSize;
     double diagonal;
     Animator animator;
-    TextView namesplash;
+    TextView namesplash,title;
     RotateAnimation rotate;
     AppBarLayout appbar;
     OkHttpClient client;
@@ -57,18 +58,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        appbar=findViewById(R.id.appbar);
-        splash=findViewById(R.id.splash);
-        client = new OkHttpClient();
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         setLightTheme(true,true);
-
-        mainpane=findViewById(R.id.mainpane);
-        splash=findViewById(R.id.splash);
         screenSize = new Point();
         getWindowManager().getDefaultDisplay().getSize(screenSize);
         diagonal=Math.sqrt((screenSize.x*screenSize.x) + (screenSize.y*screenSize.y));
+
+        appbar=findViewById(R.id.appbar);
+        appbar.setPadding(0,getHeightStatusNav(0)+dptopx(5),0,0);
+
+        splash=findViewById(R.id.splash);
+        client = new OkHttpClient();
+
+        mainpane=findViewById(R.id.mainpane);
+        splash=findViewById(R.id.splash);
+
+        title=findViewById(R.id.title);
+        title.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/vdub.ttf"));
         splash();
     }
     public void splash(){
@@ -148,6 +154,15 @@ public class MainActivity extends AppCompatActivity {
     public String toTitleCase(String str){
         str=str.toLowerCase();
         return (str.substring(0,1).toUpperCase()).concat(str.substring(1,str.length()));
+    }
+    public int dptopx(float dp) { return Math.round(dp * (getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT)); }
+    public int getHeightStatusNav(int viewid) {
+        int result = 0;
+        String view=(viewid==0)?"status_bar_height":"navigation_bar_height";
+        int resourceId = getResources().getIdentifier(view, "dimen", "android");
+        if (resourceId > 0) { result = getResources().getDimensionPixelSize(resourceId); }
+        if(viewid==1){result = result* 5/8;}
+        return result;
     }
     public void setLightTheme(boolean status,boolean nav){
         int flags = getWindow().getDecorView().getSystemUiVisibility();

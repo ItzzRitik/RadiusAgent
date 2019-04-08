@@ -27,8 +27,19 @@
                 android:visibility="gone">
                 <android.support.v7.widget.Toolbar
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:id="@+id/title"
+                            android:textSize="20sp"
+                            android:letterSpacing="0.6"
+                            android:text="@string/app_name" />
+                    </RelativeLayout>
                 </android.support.v7.widget.Toolbar>
             </android.support.design.widget.AppBarLayout>
         </android.support.design.widget.CoordinatorLayout>

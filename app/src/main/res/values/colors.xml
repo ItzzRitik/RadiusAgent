@@ -3,6 +3,6 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#ffffff</color>
     <color name="colorAccent">#03AFFA</color>
-    <color name="male">#6fb5f4</color>
-    <color name="female">#ff8b9c</color>
+    <color name="male">#67b1f4</color>
+    <color name="female">#fd8093</color>
 </resources>

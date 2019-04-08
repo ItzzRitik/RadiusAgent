@@ -63,7 +63,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> 
         final Users user = users.get(position);
         holder.name.setText(user.getName());
         holder.email.setText(user.getEmail());
-        holder.age.setText(user.getAge());
+        holder.age.setText("AGE: "+user.getAge());
         if(user.getGender().equals("male")){
             holder.genderback.setBackground(activity.getDrawable(R.drawable.male_back));
             holder.gender.setImageResource(R.drawable.male);

@@ -154,10 +154,10 @@ public class MainActivity extends AppCompatActivity {
         animator.setInterpolator(new AccelerateInterpolator());animator.setDuration(1000);
         mainpane.setVisibility(View.VISIBLE);splash.setElevation(1);mainpane.setElevation(2);animator.start();
         icosplash.animate().scaleX(30f).scaleY(30f).setDuration(1000).start();
-        new Handler().postDelayed(() -> { setLightTheme(false,true); },200);
+        new Handler().postDelayed(() -> { setLightTheme(false,false);
+            MainActivity.this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);},200);
         new Handler().postDelayed(() -> {
             MainActivity.this.getWindow().setStatusBarColor(MainActivity.this.getResources().getColor(R.color.colorAccent));
-            MainActivity.this.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         },500);
         new Handler().postDelayed(() -> { splash.setVisibility(View.GONE); },800);
     }

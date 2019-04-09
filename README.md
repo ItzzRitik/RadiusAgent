@@ -16,13 +16,14 @@ Formerly known as **Agentdesks**, **Radius** is a social network for agents, tha
 
 ## About This Application
 
+This **Mobile Appliaction** performs an HTTP Request to [this](https://raw.githubusercontent.com/iranjith4/radius-intern-mobile/master/users.json) server. Which returns a **JSON String**. Now this **Nested JSON String** is parsed by the application to generate an ArrayList Data Structure with **Java Serialised Object** as its elements. Now 
 This project is thoroughly for **Educational Purpose**, as it has precise implementation of :
 
-- **Performing HTTP Request**
-- **Request and Wait Callback**
-- **Nested JSON Parsing**
-- **Recycler View**
-- **Adapters**
-- **UI/UX Designs**
+- Performing HTTP Request
+- Request and Wait Callback
+- Nested JSON Parsing
+- Recycler View
+- Adapters
+- UI/UX Designs
 
 

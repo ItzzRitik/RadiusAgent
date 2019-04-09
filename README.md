@@ -20,7 +20,7 @@ Visit Their Website Now : [Radius Agent](http://radiusagent.com).
 
 This **Mobile Appliaction** shoots an HTTP Request to the backend server located at this [link](https://raw.githubusercontent.com/iranjith4/radius-intern-mobile/master/users.json). Which returns a **JSON String**. Now this **Nested JSON String** is parsed by the application to generate an **ArrayList** Data Structure with **Java Serialised Object** as its elements. Now this ArrayList is used as an input for the Custom Adapter to populate the **Recycler View**.
   
-**This project** is thoroughly for **Educational Purpose**, as it reflects precise implementation of :
+**This project** is thoroughly for **Educational Purpose**, as it reflects precise implementation of:
   
 - Shooting HTTP Request
 - Request and Wait Callback

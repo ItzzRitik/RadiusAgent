@@ -28,5 +28,9 @@ This project is thoroughly for **Educational Purpose**, as it reflects precise i
 - UI/UX Designs
 
 ## Screenshots
-<img src="Screenshots/s1.png" width="50%"><img src="Screenshots/s2.png" width="50%">
+<p align="center"><img src="Screenshots/s1.png" width="40%"><img src="Screenshots/s2.png" width="40%"></p>
 
+## Download  
+This **Mobile Appliaction** is ready to be tried. Get your hands on it now.  
+
+[<img src="download_button.png" width="200">](Radius.apk?raw=true)
